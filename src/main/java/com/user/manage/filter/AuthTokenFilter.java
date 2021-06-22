@@ -20,10 +20,10 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) {
         try {
             String jwt = parseJwt(request);
-            if (jwt == null && !jwtService.validateJwtToken(jwt)) {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "JWT Verify failed");
-            } else {
+            if (jwt != null && jwtService.validateJwtToken(jwt)) {
                 filterChain.doFilter(request, response);
+            } else {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "JWT Verify failed");
             }
         } catch (Exception ex) {
             logger.error("Cannot set user authentication: {}", ex.getMessage(), ex);
