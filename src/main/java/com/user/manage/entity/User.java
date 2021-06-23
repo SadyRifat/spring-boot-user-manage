@@ -30,8 +30,7 @@ import java.util.stream.Collectors;
 public class User  implements UserDetails {
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private String id;
 
 	@Column(name = "username", length = 20, nullable = false)
 	private String username;
@@ -46,13 +45,13 @@ public class User  implements UserDetails {
 	@Column(name = "full_name", length = 200)
 	private String fullName;
 
-	@Column(nullable = false, name = "enabled")
-	private boolean enabled;
-	@Column(nullable = false, name = "account_expired_status")
+	@Column(name = "enabled")
+	private boolean enabled = false;
+	@Column(name = "account_expired_status")
 	private boolean accountNonExpired = true;
-	@Column(nullable = false, name = "account_locked_status")
+	@Column(name = "account_locked_status")
 	private boolean accountNonLocked = true;
-	@Column(nullable = false, name = "credentials_expired_status")
+	@Column(name = "credentials_expired_status")
 	private boolean credentialsNonExpired = true;
 
 	@ManyToMany(fetch = FetchType.LAZY)

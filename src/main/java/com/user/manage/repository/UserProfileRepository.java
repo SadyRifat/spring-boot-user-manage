@@ -1,9 +1,9 @@
 package com.user.manage.repository;
 
-import com.user.manage.entity.User;
+import com.user.manage.entity.UserProfile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRoleRepository extends JpaRepository<User, String>{
+public interface UserProfileRepository extends JpaRepository<UserProfile, String> {
 }

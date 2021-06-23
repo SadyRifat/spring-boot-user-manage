@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @NoArgsConstructor
@@ -13,11 +14,12 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 public class LoginRequest {
-	@NotBlank
-	@JsonProperty("user_name")
-	private String username;
+	@Email
+	@NotBlank(message = "Email can not be blank")
+	@JsonProperty("user_email")
+	private String userEmail;
 
-	@NotBlank
+	@NotBlank(message = "Password can not be blank")
 	@JsonProperty("password")
 	private String password;
 }
